@@ -1,0 +1,11 @@
+@import url('http://timschlechter.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');
+
+.input-group{
+	width: 100%;
+}
+
+.input-group .bootstrap-tagsinput {
+
+    width: 100%;
+
+}

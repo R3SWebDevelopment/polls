@@ -1,0 +1,148 @@
+/* 
+   setup
+*/
+
+/*IPHONE 4 4s*/
+@IPHONE-4-4S: ~"only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)";
+@IPHONE-4-4S-PORTRAIT: ~"only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)";
+@IPHONE-4-4S-LANDSCAPE: ~"only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+/*IPHONE 5 5s*/
+@IPHONE-5-5S: ~"only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2)";
+@IPHONE-5-5S-PORTRAIT: ~"only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)";
+@IPHONE-5-5S-LANDSCAPE: ~"only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+/*IPHONE 6*/
+@IPHONE-6: ~"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2)";
+@IPHONE-6-PORTRAIT: ~"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)";
+@IPHONE-6-LANDSCAPE: ~"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+/*IPHONE 6+*/
+@IPHONE-6P: ~"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3)";
+@IPHONE-6P-PORTRAIT: ~"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)";
+@IPHONE-6P-LANDSCAPE: ~"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)";
+/**IPAD MINI**/
+@IPAD-MINI: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)";
+@IPAD-MINI-PORTRAIT: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait)";
+@IPAD-MINI-LANDSCAPE: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape)";
+/**IPAD 1 AND 2**/
+@IPAD-1-2: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)";
+@IPAD-1-2-PORTRAIT: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait)";
+@IPAD-1-2-LANDSCAPE: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape)";
+/**IPAD 3 AND 4**/
+@IPAD-3-4: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2)";
+@IPAD-3-4-PORTRAIT: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)";
+@IPAD-3-4-LANDSCAPE: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+/*LAPTOP*/
+@LAPTOP: ~"only screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1)";
+@LAPTOP-RETINA: ~"only screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1)";
+
+@winheight:unit(`$(window).height()`, px);
+@cover-slider-controller-color : white;
+@NAV-HEIGHT: 0px;
+
+
+#nav{
+	.navbar-brand img{
+		height : 100%;
+		display : none;
+	}
+    @media @LAPTOP , @LAPTOP-RETINA{
+		.navbar-brand img{
+			display : none;
+		}
+    }
+    @media @IPHONE-4-4S , @IPHONE-5-5S  , @IPHONE-6 , @IPHONE-6P , @IPAD-MINI , @IPAD-1-2 , @IPAD-3-4{
+		.navbar-brand img{
+			display : block;
+		}
+		.navbar-brand span{
+			display : none;
+		}
+    }
+}
+
+#cover #slider-controller {
+	color : @cover-slider-controller-color;
+	
+	.slider-control:hover{
+		color : lighten(gray, 30%);
+		cursor : pointer;
+	}	
+}
+
+#info{
+    @media @IPHONE-4-4S-LANDSCAPE , @IPHONE-5-5S-LANDSCAPE , @IPHONE-6-LANDSCAPE , @IPHONE-6P-LANDSCAPE , @IPAD-MINI-PORTRAIT , @IPAD-1-2-PORTRAIT , @IPAD-3-4-PORTRAIT{
+		#image > img{
+			margin : auto;
+		}
+    }
+}
+
+#footer{
+	a{
+		color : white;
+	}
+	
+    @media @IPHONE-4-4S , @IPHONE-5-5S  , @IPHONE-6 , @IPHONE-6P , @IPAD-MINI , @IPAD-1-2 , @IPAD-3-4{
+		height : 100px;
+		margin : 0px;
+		padding : 0px;
+		
+		.container > div{
+			margin : 0px;
+			padding : 0px;
+		}
+		
+		.container > div > div{
+			margin : 0px;
+			padding : 0px;
+			width : 100%;
+			text-align : center;
+		}
+    }
+}
+
+#portfolio{
+	#slider{
+		height : 300px;
+	}
+	.album-image-controller{
+		cursor : pointer;
+	}
+    @media @IPHONE-4-4S-PORTRAIT , @IPHONE-5-5S-PORTRAIT , @IPHONE-6-PORTRAIT , @IPHONE-6P-PORTRAIT{
+		.carousel-caption h1{
+			font-size : 12px;
+		}
+    }
+}
+
+#view-on-modal-album{
+	#album-image-slider{
+		height : 800px;
+	}
+    @media @IPHONE-4-4S-PORTRAIT , @IPHONE-5-5S-PORTRAIT , @IPHONE-6-PORTRAIT , @IPHONE-6P-PORTRAIT{
+		#album-image-slider{
+			height : 300px;
+		}
+    }
+    @media @IPHONE-4-4S-LANDSCAPE , @IPHONE-5-5S-LANDSCAPE , @IPHONE-6-LANDSCAPE , @IPHONE-6P-LANDSCAPE{
+		#album-image-slider{
+			height : 250px;
+		}
+    }
+
+    @media @IPAD-MINI-PORTRAIT , @IPAD-1-2-PORTRAIT , @IPAD-3-4-PORTRAIT{
+		#album-image-slider{
+			height : 600px;
+		}
+    }
+
+    @media @IPAD-MINI-LANDSCAPE , @IPAD-1-2-LANDSCAPE , @IPAD-3-4-LANDSCAPE{
+		#album-image-slider{
+			height : 400px;
+		}
+    }
+
+}
+
+/**
+	MEDIA QUERY
+**/
