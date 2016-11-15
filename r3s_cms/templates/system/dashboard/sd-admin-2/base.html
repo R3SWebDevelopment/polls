@@ -1,0 +1,58 @@
+{% extends "bootstrap_base.html" %}
+{% load system_tags %}
+
+{% block PAGE_HEAD_TITLE %}
+	R3S CMS - Admin Dashboard 
+{% endblock %}
+
+{% block PAGE_CSS %}
+	<!-- Custom CSS -->
+	<link href="/static/css/apps/system/dashboard/sb-admin-2/sb-admin.css" rel="stylesheet">
+	<!-- Morris Charts CSS -->
+	<link href="/static/css/plugins/morris/morris.css" rel="stylesheet">
+{% endblock %}
+
+{% block PAGE_BODY %}
+	<div id = "wrapper">
+		{% include "system/dashboard/sd-admin-2/navbar.html" %}
+		<div id="page-wrapper">
+			<div class="container-fluid" style = "min-height:0px !important;">
+			<!-- Page Heading -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						{{ PAGE_TITLE }}
+						{% if PAGE_SUBTITLE %}
+							<small>
+								{{ PAGE_SUBTITLE }}
+							</small>
+						{% endif %}
+					</h1>
+				{% if BREADCRUMBS and BREADCRUMBS|length > 0 %}
+					<ol class="breadcrumb">
+					{% for breadcrumb in BREADCRUMBS %}
+						<li class="{{ breadcrumb.active|yesno:'active' }}">
+							<a href = "{{ breadcrumb.url|default:'#' }}">
+								<i class="fa {{ breadcrumb.icon }}"></i> {{ breadcrumb.label }}
+							</a>
+						</li>
+					{% endfor %}
+					</ol>
+				{% endif %}
+				</div>
+			</div>
+		{% block DASHBOARD_BODY %}
+		{% endblock %}
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /#page-wrapper -->
+{#	</div>#}
+{% endblock %}
+
+{% block PAGE_JS %}
+	<!-- Morris Charts JavaScript -->
+	<script src="/static/js/plugins/morris/raphael.min.js"></script>
+<!--	<script src="/static/js/plugins/morris/morris.min.js"></script>-->
+<!--	<script src="/static/js/plugins/morris/morris-data.js"></script>-->
+{% endblock %}

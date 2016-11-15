@@ -1,0 +1,27 @@
+{% for action in poll.actions %}
+<tr>
+	<td class = "text-center">
+		{{ action.action|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ action.description|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ action.code|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ action.expectedResult|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ action.startDate|date:"Y-m-d" }}
+	</td>
+	<td class = "text-center">
+		{{ action.timing|default:'' }}
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ action.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "ACTION">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

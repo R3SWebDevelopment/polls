@@ -1,0 +1,41 @@
+{% load imagery %}
+{% load base_tags %}
+{% get_siteurl as siteurl %}
+<div class = "row col-md-12" >
+	<div id="album-image-slider" class="carousel slide">
+	    <!-- Indicators -->
+	    <ol class="carousel-indicators">
+		{% for image in album.getPublishedImages %}
+			<li data-target="#album-image-slider" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|yesno:'active,'}}"></li>
+		{% endfor %}
+	    </ol>
+
+	    <!-- Wrapper for slides -->
+	    <div class="carousel-inner">
+		{% for image in album.getPublishedImages %}
+		    <div class="item {{forloop.first|yesno:'active,'}}">
+		        <div class="fill" style="background-image:url('{{siteurl}}{{image.url}}');"></div>
+		        <div class="carousel-caption">
+		            <h1>{{image.title|default:''}}</h1>
+		        </div>
+		    </div>	
+		{% endfor %}
+	    </div>
+
+	    <!-- Controls -->
+	    <a class="left carousel-control" href="#album-image-slider" data-slide="prev">
+	        <span class="icon-prev"></span>
+	    </a>
+	    <a class="right carousel-control" href="#album-image-slider" data-slide="next">
+	        <span class="icon-next"></span>
+	    </a>
+	</div>
+</div>
+<script>
+	$('body').ready(function(){
+		var album_image_slider = $(this).find('#album-image-slider');
+	    $(album_image_slider).carousel({
+	        interval: 5000 //changes the speed
+	    });
+	});
+</script>

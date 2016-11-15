@@ -1,0 +1,60 @@
+{% extends "system/polls/templates/question-base.html" %}
+
+{% block QUESTION_BODY %}
+	<div class = "row col-md-12 text-justify page-header">
+		Define las personas que forman parte de tu equipo de trabajo, los cuales te reportan directamente y con todos ellos podrias comenzar un proceso de coaching.
+	</div>
+	<div class = "row col-md-12 table-responsive">
+		<table class="table">
+			<thead>
+				<tr style = "border : 0px solid black;">
+					<th class = "col-md-4 text-center" colspan = "2" style = "border : 0px solid black;">
+						&nbsp
+					</th>
+					<th class = "col-md-4 text-center" colspan = "2" style = "border : 0px solid black;">
+						Antigüedad en el Puesto
+					</th>
+				</tr>
+				<tr>
+					<th class = "col-md-5 text-center" style = "border-top : 0px solid black;">
+						Nombre
+					</th>
+					<th class = "col-md-4 text-center" style = "border-top : 0px solid black;">
+						Puesto
+					</th>
+					<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+						Años
+					</th>
+					<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+						Meses
+					</th>
+					<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+						&nbsp
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% include "system/polls/templates/Fase-I/inventario-talento/question-1-list.html" with poll=poll %}
+			{% if poll.isSaveEnabled %}
+				<tr>
+					<td class = "text-center">
+						<input id = "id_name" name = "name" placeholder = "Nombre" value = "" class = "col-md-12">
+					</td>
+					<td class = "text-center">
+						<input id = "id_position" name = "position" placeholder = "Puesto" value = "" class = "col-md-12">
+					</td>
+					<td class = "text-center">
+						<input id = "id_years" name = "years" placeholder = "Años" value = "" class = "col-md-12">
+					</td>
+					<td class = "text-center">
+						<input id = "id_months" name = "months" placeholder = "Meses" value = "" class = "col-md-12">
+					</td>
+					<td class = "text-center">
+						<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "{{ poll.addTalentoURL|default:'' }}" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "talentos">Agregar</button>
+					</td>
+				</tr>
+			{% endif %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

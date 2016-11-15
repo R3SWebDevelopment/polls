@@ -1,0 +1,7 @@
+<div class = "row" style = "margin-bottom : 10px;">
+	<div class="panel-group" id="{{QUESTION_HOLDER_ID}}" role="tablist" aria-multiselectable="true">
+		<div class = "row col-md-12">
+			{% include "system/polls/templates/Fase-IV/analisis-avances/question-1.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_1_answered question_id="question-1" question_body_id="question-body-1" question_title=poll.question_1_title question_header=poll.question_1_header question_id=poll.question_1_id always_open_override=False question_has_header=poll.question_1_has_header question_value=poll.question_1_value question_list_limit=3 %}
+		</div>
+	</div>
+</div>

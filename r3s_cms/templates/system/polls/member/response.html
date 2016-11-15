@@ -1,0 +1,57 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+{% load polls_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row">
+		<div class="progress col-md-8 col-md-offset-2">
+			<div class="progress-bar progress-bar-{% if memberPoll.getProgress <= 25 %}danger {% elif memberPoll.getProgress <= 50 %}warning {% elif memberPoll.getProgress <= 75 %}info {% else %}success {% endif %}" role="progressbar" aria-valuenow="{{ memberPoll.getProgress }}" aria-valuemin="0" aria-valuemax="{{ memberPoll.totalAnswers }}" style="width: {{ memberPoll.getProgress }}%">
+				<span>{{ memberPoll.getProgress }}% Completado</span>
+			</div>
+		</div>
+	</div>
+	<form method = "POST" action = "{{ memberPoll.saveURL|default:'' }}" id = "responsePoll">
+		{% csrf_token %}
+		<input type = "hidden" id = "id_instanceId" name = "instanceId" value = "">
+		<input type = "hidden" id = "id_action" name = "action" value = "UPDATE">
+		<input type = "hidden" id = "id_source" name = "source" value = "GENERAL">
+		<div class = "row" id = "poll-body">
+		{% with template=questionnaire.template %}
+			{% if template %}
+			<div class = "col-md-10 col-md-offset-1">
+				{% include template with poll=memberPoll QUESTION_HOLDER_ID=poll.id %}
+			</div>
+			{% endif %}
+		{% endwith %}
+		</div>
+		<div class = "row" id = "poll-controls">
+			<div class = "col-md-10 col-md-offset-1">
+			{% if memberPoll.isCommitEnabled %}
+				<button class="btn btn-success pull-right" type="submit" data-url = "{{ memberPoll.commitURL }}" id = "commit" {{ memberPoll.canBeCommitted|yesno:',disabled="disabled"' }}>
+					<i class="fa fa-cloud-upload"></i>
+					Entregar
+				</button>
+			{% endif %}
+			{% if memberPoll.isSaveEnabled %}
+				<button class="btn btn-primary pull-right" type="submit" data-url = "{{ memberPoll.saveURL }}" id = "save" {{ memberPoll.canBeSaved|yesno:',disabled="disabled"' }}>
+					<i class="fa fa-floppy-o"></i>
+					Guardar
+				</button>
+			{% endif %}
+				<a href = "{{ returnURL }}">
+					<button class="btn btn-warning" type="button">
+						<i class="fa fa-arrow-left"></i>
+						Regresar
+					</button>
+				</a>
+			</div>
+		</div>
+	</form>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+	<script src="/static/js/apps/system/polls/polls.js"></script>
+{% endblock %}

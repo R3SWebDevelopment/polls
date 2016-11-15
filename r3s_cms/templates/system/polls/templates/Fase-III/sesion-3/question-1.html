@@ -1,0 +1,61 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class = "col-md-2 text-center">
+					Acción
+				</th>
+				<th class = "col-md-3 text-center">
+					Describir
+				</th>
+				<th class = "col-md-1 text-center">
+					Indicador Clave
+				</th>
+				<th class = "col-md-2 text-center">
+					Resultado Esperado
+				</th>
+				<th class = "col-md-1 text-center">
+					Fecha de Inicio
+				</th>
+				<th class = "col-md-1 text-center">
+					Tiempo de Desarrollo (meses)
+				</th>
+				<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+					&nbsp
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include "system/polls/templates/Fase-III/sesion-3/question-1-list.html" with poll=poll %}
+		{% if poll.isSaveEnabled or True %}
+			<tr>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_action" name = "st_action" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_description" name = "st_description" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<input type="text" class="form-control" id="st_code" name="st_code" {{ poll.canBeSaved|yesno:',readonly' }} value = "">
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_expectedResult" name = "st_expectedResult" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<input type="text" class="form-control datepicker" id="st_startDate" name="st_startDate" {{ poll.canBeSaved|yesno:',readonly' }} value = "">
+				</td>
+				<td class = "text-center">
+					<input type="number" class="form-control" id="st_timing" name="st_timing" {{ poll.canBeSaved|yesno:',readonly' }} value = "">
+				</td>
+				<td class = "text-center">
+					<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "ACTION">Agregar</button>
+				</td>
+			</tr>
+		{% endif %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<div class = "row col-md-12" id = "image-grid">
+{% for image in images %}
+	{% include 'system/base/image-base.html' with image=image COL_MD=COL_MD IMAGE_HEIGHT=IMAGE_HEIGHT%}
+{% endfor %}
+</div>

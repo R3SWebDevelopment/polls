@@ -1,0 +1,13 @@
+{% extends "system/base/panel-base.html" %}
+
+{% block PANEL_BASE_BODY %}
+{% include 'system/base/image-grid.html' with images=images %}
+{% endblock %}
+
+{% block PANEL_BASE_FOOTER %}
+	{% if PAGINATED_TABLE == True %}
+		&nbsp
+	{% else %}
+		&nbsp
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load base_tags %}
+
+<div class = "table-responsive">
+	<table class = "table">
+		<thead>
+			<tr>
+			{% for title in data.titles %}
+				<th class = "{{ title.sorted|yesno:'table-sorted' }} {{ title.size|default:'' }} text-center">
+					{{ title.label }}
+				</th>
+			{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+		{% for row in data.rows %}
+			<tr>
+			{% for title in data.titles %}
+				<td class = "{{ title.sorted|yesno:'table-sorted' }} text-center">
+				{% get_column data=row column=title.id as column %}
+				{% if title.is_index = True %}
+					{{ forloop.counter }}
+				{% elif title.is_link = True %}
+					<a href = "{{ column.url }}" class =" {{ column.modal|yesno:'target-modal' }} " data-modal_target = "{{ column.modal_target|default:'' }}">
+					{% if title.is_money = True %}
+						{{ column.label|currency }}
+					{% else %}
+						{{ column.label|truncatewords:20 }}
+					{% endif %}
+					</a>
+				{% elif title.is_money = True %}
+					{{ column.label|currency }}
+				{% elif title.is_action = True %}
+					ACTIONS
+				{% else %}
+					{{ column.label|truncatewords:20 }}
+				{% endif %}
+				</td>
+			{% endfor %}
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>

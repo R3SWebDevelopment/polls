@@ -1,0 +1,57 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class = "col-md-4 text-center">
+					Habilidades
+				</th>
+				<th class = "col-md-1 text-center">
+					Técnicas
+				</th>
+				<th class = "col-md-1 text-center">
+					Interpersonales
+				</th>
+				<th class = "col-md-5 text-center">
+					Describir
+				</th>
+				<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+					&nbsp
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include "system/polls/templates/Fase-III/sesion-2/question-3-list.html" with poll=poll %}
+		{% if poll.isSaveEnabled or True %}
+			<tr>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_ap_skills" name = "st_ap_skills" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="st_ap_technique" name="st_ap_technique" value="technique" {{ poll.canBeSaved|yesno:',readonly' }}>
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="st_ap_interpersonal" name="st_ap_interpersonal" value="interpersonal" {{ poll.canBeSaved|yesno:',readonly' }}>
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_ap_description" name = "st_ap_description" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "ACTION-PLAN">Agregar</button>
+				</td>
+			</tr>
+		{% endif %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

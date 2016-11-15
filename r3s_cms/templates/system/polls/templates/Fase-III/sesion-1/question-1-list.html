@@ -1,0 +1,18 @@
+{% for feedback in poll.feedbacks %}
+<tr id = "{{ feedback.id }}">
+	<td class = "text-center">
+		{{ feedback.aspect|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ feedback.description|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ feedback.evidence|default:'' }}
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ feedback.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "FEEDBACK">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

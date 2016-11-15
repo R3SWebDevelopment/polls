@@ -1,0 +1,32 @@
+{% extends "system/base/simple-template.html" %}
+
+{% block PAGE_HEAD_TITLE %}
+	Error
+{% endblock %}
+
+{% block PAGE_BODY %}
+	<div class="container">
+		<div class = "col-md-8 col-md-offset-2" style = "margin-top : 100px;">
+			<div class="alert alert-danger" role="alert">
+				<div class = "row text-center">
+					<i class="fa fa-exclamation-triangle fa-5x"></i>
+					<h1>
+						{{ error_message|default:'' }}
+					</h1>
+				{% if go_back %}
+					<button type="button" class="btn btn-danger btn-lg">
+						<a href = "{{ go_back }}">
+							Regresar
+						</a>
+					</button>
+				{% endif %}
+				<button type="button" class="btn btn-danger btn-lg">
+					<a href = "{% url 'system_dashboard' %}">
+						Ir a Dashboard
+					</a>
+				</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

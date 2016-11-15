@@ -1,0 +1,72 @@
+{% load imagery %}
+{% load base_tags %}
+{% get_siteurl as siteurl %}
+{% get_public_albums as albums %}
+<div class="featurette" id="portfolio">
+	<div class = "container">
+		<div class = "col-md-12">
+			<div class = "row col-md-12 text-center">
+				<h1>
+					PORTFOLIO
+				</h1>
+			</div>
+			<div class = "row col-md-12 text-center">
+				<p class = "lead">
+					PUBLICIDAD: Agencias de Publicidad, Imprentas, Diseñadores Gráficos y Clientes Directos.
+					SOCIALES.
+				</p>
+			</div>
+			<div class = "row col-md-12">
+				
+				<div id="slider" class="carousel slide">
+				    <!-- Indicators -->
+				    <ol class="carousel-indicators">
+					{% for album in albums %}
+						<li data-target="#slider" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|yesno:'active,'}}"></li>
+					{% endfor %}
+				    </ol>
+
+				    <!-- Wrapper for slides -->
+				    <div class="carousel-inner">
+					{% for album in albums %}
+					    <div class="item {{forloop.first|yesno:'active,'}} album-image-controller view-on-modal" data-view_on_modal_height = "300"  data-view_on_modal_width = "600"  data-view_on_modal_title = "" data-view_on_modal_target = "#view-on-modal-album" data-view_on_modal_url = "{% url 'public_album_view' album_id=album.id %}" data-view_on_modal_iframe = false>
+					        <div class="fill" style="background-image:url('{{siteurl}}{{album.cover_url}}');"></div>
+					        <div class="carousel-caption">
+					            <h1>{{album.title|default:''}}</h1>
+					        </div>
+					    </div>	
+					{% endfor %}
+				    </div>
+
+				    <!-- Controls -->
+				    <a class="left carousel-control" href="#slider" data-slide="prev">
+				        <span class="icon-prev"></span>
+				    </a>
+				    <a class="right carousel-control" href="#slider" data-slide="next">
+				        <span class="icon-next"></span>
+				    </a>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="view-on-modal-album" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">
+					Album
+				</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>

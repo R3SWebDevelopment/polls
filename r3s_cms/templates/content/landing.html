@@ -1,0 +1,24 @@
+{% extends "bootstrap_base.html" %}
+{% load system_tags %}
+
+{% block PAGE_HEAD_TITLE %}
+	.::Hugo Muñoz || Fotografo ::.
+{% endblock %}
+
+{% block PAGE_CSS %}
+<link href = "/static/css/apps/content/base.css" rel="stylesheet" type="text/css">
+<link href = "/static/css/apps/content/base.less" rel="stylesheet/less" type="text/css">
+<link href = "/static/css/apps/content/one-page-wonder.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block PAGE_BODY %}
+	{% include 'content/nav.html' %}
+	{% include 'content/cover/holder.html' %}
+	{% include 'content/info/holder.html' %}
+	{% include 'content/portfolio/holder.html' %}
+	{% include 'content/contact-us/holder.html' %}
+	{% include 'content/footer.html' %}
+{% endblock %}
+{% block PAGE_JS %}
+	<script src="/static/js/apps/content/base.js"></script>
+{% endblock %}

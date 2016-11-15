@@ -1,0 +1,59 @@
+<link href = "/static/css/apps/system/base/drag-n-draw-upload-files-panel/base.css" rel="stylesheet" type="text/css">
+<link href = "/static/css/apps/system/base/drag-n-draw-upload-files-panel/dropzone.css" rel="stylesheet" type="text/css">
+<div class="panel panel-default" id = "drag-n-draw-upload-files-panel-holder">
+	<div class="panel-heading">
+		<strong>
+			{{ PANEL_TITLE }}
+		</strong>
+		<small>
+			{{ PANEL_SUBTITLE }}
+		</small>
+	</div>
+	<div class="panel-body">
+	<!-- Standar Form -->
+		<h4>
+			Seleccione Archivos:
+		</h4>
+		<form action="{{ UPLOAD_ACTION }}" method="post" enctype="multipart/form-data" id="js-upload-form">
+			{% csrf_token %}
+<!--
+			<div class="fallback">
+				<input type="file" name="file" />
+			</div>
+			
+			
+			<div class="form-inline">
+				<div class="form-group">
+					<input type="file" name="files[]" id="js-upload-files" multiple>
+				</div>
+				<button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">
+					Subir Archivos
+				</button>
+			</div>
+-->
+		</form>
+		<!-- Drop Zone -->
+		<h4>
+			O Arrastre y Suelte los Archivos 
+		</h4>
+		<div class="upload-drop-zone" id="drop-zone">
+			Solo Arrastre y Suelte los Archivos Aqui
+		</div>
+		<!-- Progress Bar -->
+		<div class="progress hide">
+			<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+				<span class="sr-only">60% Complete</span>
+			</div>
+		</div>
+		<!-- Upload Finished -->
+		<div class="js-upload-finished hide">
+			<h3>Processed files</h3>
+			<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-01.jpg</a>
+				<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-02.jpg</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/static/js/apps/system/base/drag-n-draw-upload-files-panel/dropzone.js"></script>
+<script src="/static/js/apps/system/base/drag-n-draw-upload-files-panel/base.js"></script>

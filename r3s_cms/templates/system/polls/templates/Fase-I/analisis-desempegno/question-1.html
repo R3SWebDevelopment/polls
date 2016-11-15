@@ -1,0 +1,77 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class = "col-md-5 text-center">
+					Nombre
+				</th>
+				<th class = "col-md-2 text-center">
+					Nivel de Desempeño
+				</th>
+				<th class = "col-md-2 text-center">
+					Actitudes y conductas favorables
+				</th>
+				<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+					&nbsp
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include "system/polls/templates/Fase-I/analisis-desempegno/question-1-list.html" with poll=poll %}
+		{% if poll.isSaveEnabled or True%}
+			<tr>
+				<td class = "text-center">
+					<input id = "ad_eic_name" name = 'ad_eic_name' placeholder = "Nombre" value = "" class = "col-md-12">
+				</td>
+				<td class = "text-center">
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_performance" id="ad_eic_performance" value="alto">
+							Alto
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_performance" id="ad_eic_performance" value="medio">
+							Medio
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_performance" id="ad_eic_performance" value="bajo">
+							Bajo
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_actitute" id="ad_eic_actitute" value="alto">
+							Alto
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_actitute" id="ad_eic_actitute" value="medio">
+							Medio
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="ad_eic_actitute" id="ad_eic_actitute" value="bajo">
+							Bajo
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "COLABORADORES">Agregar</button>
+				</td>
+			</tr>
+		{% endif %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

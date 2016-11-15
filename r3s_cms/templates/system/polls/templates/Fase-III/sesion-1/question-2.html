@@ -1,0 +1,45 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class = "col-md-3 text-center">
+					Área de Oportunidad
+				</th>
+				<th class = "col-md-4 text-center">
+					Describir
+				</th>
+				<th class = "col-md-4 text-center">
+					Evidencia/ejemplo
+				</th>
+				<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+					&nbsp
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include "system/polls/templates/Fase-III/sesion-1/question-2-list.html" with poll=poll %}
+		{% if poll.isSaveEnabled or True %}
+			{% if question_list_limit >= question_value|length %}
+			<tr>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "so_ao_area" name = "so_ao_area" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "so_ao_description" name = "so_ao_description" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "so_ao_evidence" name = "so_ao_evidence" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "OPPORTUNITIES">Agregar</button>
+				</td>
+			</tr>
+			{% endif %}
+		{% endif %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

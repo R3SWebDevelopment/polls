@@ -1,0 +1,66 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row" id = "user-control">
+		<div class = "col-md-6 col-md-offset-3">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class = "col-md-1">
+							No.
+						</th>
+						<th class = "col-md-4">
+							Nombre
+						</th>
+						<th class = "col-md-2">
+							Usuario
+						</th>
+						<th class = "col-md-2">
+							E-Mail
+						</th>
+						<th class = "col-md-3">
+							Acciones
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for request in requests %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>
+							{{ request.name }}
+						</td>
+						<td>
+							{{ request.username }}
+						</td>
+						<td>
+							{{ request.email }}
+						</td>
+						<td>
+							<button type="button" class="btn btn-primary btn-xs">
+								<a href = "{{ request.processURL }}">
+									Aceptar
+								</a>
+							</button>
+							<button type="button" class="btn btn-primary btn-xs">
+								<a href = "{{ request.cancelURL }}">
+									Cancelar
+								</a>
+							</button>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class = "col-md-4 text-center">
+					Recurso
+				</th>
+				<th class = "col-md-1 text-center">
+					Hábitos
+				</th>
+				<th class = "col-md-1 text-center">
+					Actitudes
+				</th>
+				<th class = "col-md-1 text-center">
+					Aprendizaje
+				</th>
+				<th class = "col-md-4 text-center">
+					Describir
+				</th>
+				<th class = "col-md-1 text-center" style = "border-top : 0px solid black;">
+					&nbsp
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include "system/polls/templates/Fase-III/sesion-2/question-2-list.html" with poll=poll %}
+		{% if poll.isSaveEnabled or True %}
+			<tr>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_it_resource" name = "st_it_resource" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="st_it_habit" name="st_it_habit" value="habit" {{ poll.canBeSaved|yesno:',readonly' }}>
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="st_it_actitude" name="st_it_actitude" value="actitude" {{ poll.canBeSaved|yesno:',readonly' }}>
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="st_it_learning" name="st_it_learning" value="learning" {{ poll.canBeSaved|yesno:',readonly' }}>
+						</label>
+					</div>
+				</td>
+				<td class = "text-center">
+					<textarea class="form-control" rows="3" style = "resize:none;" id = "st_it_description" name = "st_it_description" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+				</td>
+				<td class = "text-center">
+					<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "IMPROVEMENT-TWO">Agregar</button>
+				</td>
+			</tr>
+		{% endif %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

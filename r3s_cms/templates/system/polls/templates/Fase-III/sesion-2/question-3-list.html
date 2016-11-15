@@ -1,0 +1,21 @@
+{% for improvement in poll.actionsPlan %}
+<tr>
+	<td class = "text-center">
+		{{ improvement.skills|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.technique|yesno:'Si,No' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.interpersonal|yesno:'Si,No' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.description|default:'' }}
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ improvement.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "ACTION-PLAN">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

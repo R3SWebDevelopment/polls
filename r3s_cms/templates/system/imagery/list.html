@@ -1,0 +1,20 @@
+{% extends "system/dashboard/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row col-md-12" style = "margin-bottom : 20px;">
+		<button type="button" class="btn btn-primary pull-right jump-to-page" data-url = '{% url 'system_imagery_add' %}'>
+			Agregar Album
+			<i class="fa fa-plus-circle fa-3x"></i>
+		</button>
+	</div>
+	<div class = "row col-md-12">
+		{% include 'system/base/panel-list-base.html' with PANEL_TITLE='Albumes' data=image_data PANEL_LISTED=True PANEL_TYPE='primary' PAGINATED_TABLE=False %}
+	</div>
+	
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+{#	<script src="/static/js/apps/system/dashboard/base.js"></script>#}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "system/polls/templates/question-base.html" %}
+
+{% block QUESTION_BODY %}
+{% if question_has_header %}
+	<div class = "row col-md-12 text-justify">
+		{{ question_header }}
+	</div>
+{% endif %}
+	{% block QUESTION_BODY_CONTROL %}
+	{% endblock %}
+{% endblock %}

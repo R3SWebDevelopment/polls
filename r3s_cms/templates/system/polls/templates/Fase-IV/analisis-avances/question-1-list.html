@@ -1,0 +1,62 @@
+{% for task in poll.tasks %}
+<div class = "row col-md-12" style = "margin-top : 10px;">
+	<div class = "row col-md-12" style = "margin-top : 10px;">
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Descripción
+			</label>
+			<div class = "row">
+				{{ task.description|default:'' }}
+			</div>
+		</div>
+		<div class = "col-md-2 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Evidencia
+			</label>
+			<div class = "row">
+				{{ task.evidence|default:'' }}
+			</div>
+		</div>
+		<div class = "col-md-2 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Indicador Establecido
+			</label>
+			<div class = "row">
+				{{ task.indicator|default:'' }}
+			</div>
+		</div>
+		<div class = "col-md-2 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Resultado Real
+			</label>
+			<div class = "row">
+				{{ task.result|default:'' }}
+			</div>
+		</div>
+		<div class = "col-md-2 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Tarea Concluida
+			</label>
+			<div class="radio">
+				{{ task.finished|yesno:'Si,No' }}
+			</div>
+		</div>
+	</div>
+	<div class = "row col-md-12 form-group" style = "margin-top : 10px;">
+		<div class = "col-md-10 form-group">
+		    <label for="{{poll.question_4b_id}}">
+				Comentarios Generales
+			</label>
+			<div class = "row">
+				{{ task.comments|default:'' }}
+			</div>
+		</div>
+		<div class = "col-md-2 form-group">
+		{% if poll.isSaveEnabled %}
+			<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ task.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "TASK">Eliminar</button>
+		{% endif %}
+		</div>
+
+	</div>
+</div>
+{% endfor%}

@@ -1,0 +1,68 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+{% load polls_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row" id = "user-control">
+		<div class = "col-md-6 col-md-offset-3">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							Nombre Cuestionario
+						</th>
+						<th>
+							No. de Preguntas
+						</th>
+						<th>
+							Progreso
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for questionnaire in questionnaires %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+					{% if staff %}
+						<td>
+							<a href = "{% questionnaireViewUrl member=user poll=poll questionnaire=questionnaire %}">
+								{{ questionnaire.name }}
+							</a>
+						</td>
+					{% else %}
+						<td>
+							<a href = "{% questionnaireSupervisedViewUrl member=user poll=poll questionnaire=questionnaire %}">
+								{{ questionnaire.name }}
+							</a>
+						</td>
+					{% endif %}
+						<td>
+							{{ questionnaire.questionNumber }}
+						</td>
+						<td>
+							{{ user|questionnaireProgress:questionnaire }}
+						</td>
+						<td>
+							{{ user|questionnaireStatus:questionnaire }}
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}

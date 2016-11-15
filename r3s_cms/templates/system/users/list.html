@@ -1,0 +1,95 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row">
+		<div class = "col-md-12">
+			<div class = "col-md-2 col-md-offset-10">
+				<a class="btn btn-primary btn-large" href="{{ add_button_action }}" role="button">
+					{{ add_button_label }}
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class = "row" id = "user-control">
+		<div class = "col-md-10 col-md-offset-1">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							Nombre
+						</th>
+						<th>
+							Usuario
+						</th>
+						<th>
+							Correo Electrónico
+						</th>
+						<th>
+							Status
+						</th>
+					{% if is_staff %}
+						<th>
+							Acciones
+						</th>
+					{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for user in users %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>
+							<a href = "{{ user.viewURL }}">
+								{{ user.get_full_name }}
+							</a>
+						</td>
+						<td>
+							{{ user.get_username }}
+						</td>
+						<td>
+							{{ user.email }}
+						</td>
+						<td>
+							{{ user.is_active|yesno:'Activo,Inactivo' }}
+						</td>
+						<td>
+						{% if user.is_active %}
+							<button type="button" class="btn btn-primary btn-xs">
+								<a href = "{{ user.deactiveURL }}">
+									Desactivar
+								</a>
+							</button>
+						{% else %}
+							<button type="button" class="btn btn-primary btn-xs">
+								<a href = "{{ user.activeURL }}">
+									Activar
+								</a>
+							</button>
+						{% endif %}
+						{% if is_staff %}
+							<button type="button" class="btn btn-primary btn-xs">
+								<a href = "{{ user.resetPasswordURL }}">
+									Reiniciar Contraseña
+								</a>
+							</button>
+						{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}

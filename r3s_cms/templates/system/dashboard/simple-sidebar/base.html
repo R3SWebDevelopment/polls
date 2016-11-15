@@ -1,0 +1,73 @@
+{% extends "bootstrap_base.html" %}
+{% load system_tags %}
+
+{% block PAGE_HEAD_TITLE %}
+	R3S CMS - Admin Dashboard 
+{% endblock %}
+
+{% block PAGE_CSS %}
+	<!-- Custom CSS -->
+	<link href="/static/css/apps/system/dashboard/simple-sidebar/base.css" rel="stylesheet">
+	<!-- Morris Charts CSS -->
+	<link href="/static/css/plugins/morris/morris.css" rel="stylesheet">
+	<link href="/static/css/plugins/datepicker/datepicker.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/base.css" rel="stylesheet">
+{% endblock %}
+
+{% block PAGE_BODY %}
+<div id="wrapper" class = "toggled">
+	{% include 'system/dashboard/simple-sidebar/nav.html' %}
+	<!-- Page Content -->
+	<div id="page-content-wrapper">
+		<div class="container-fluid fullsize-page sidebar_opened">
+			<div class = "page-section-header">
+				<div class="row">
+					<button class="btn btn-default" id = "menu-toggle">
+						<i class="fa fa-bars"></i>
+						Menu
+					</button>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							{{ PAGE_TITLE }}
+							{% if PAGE_SUBTITLE %}
+								<small>
+									{{ PAGE_SUBTITLE }}
+								</small>
+							{% endif %}
+						</h1>
+					{% if BREADCRUMBS and BREADCRUMBS|length > 0 %}
+						<ol class="breadcrumb">
+						{% for breadcrumb in BREADCRUMBS %}
+							<li class="{{ breadcrumb.active|yesno:'active' }}">
+								<a href = "{{ breadcrumb.url|default:'#' }}">
+									<i class="fa {{ breadcrumb.icon }}"></i> {{ breadcrumb.label }}
+								</a>
+							</li>
+						{% endfor %}
+						</ol>
+					{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class = "page-section-body">
+		{% block DASHBOARD_BODY %}
+		{% endblock %}
+			</div>
+		</div>
+	</div>
+	<!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+{#	</div>#}
+{% endblock %}
+
+{% block PAGE_JS %}
+	<!-- Morris Charts JavaScript -->
+	<script src="/static/js/plugins/morris/raphael.min.js"></script>
+	<script src="/static/js/apps/system/dashboard/simple-sidebar/base.js"></script>
+	<script src="/static/js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+<!--	<script src="/static/js/plugins/morris/morris.min.js"></script>-->
+<!--	<script src="/static/js/plugins/morris/morris-data.js"></script>-->
+{% endblock %}

@@ -1,0 +1,15 @@
+{% for performance in question_value %}
+<tr>
+	<td class = "text-center">
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "performance_id" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+	</td>
+	<td class = "text-center">
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "result_id" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn add-row" type="submit" data-elements = "name,position,years,months" data-required = "aspect,description,evidence" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }}>Agregar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

@@ -1,0 +1,60 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12">
+	<div class = "row col-md-12" style = "margin-top : 10px;">
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5a_id}}">
+				{{poll.question_5a_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5a_id}}" name="{{poll.question_5a_id}}" placeholder="{{poll.question_5a_label}}" value = "{{poll.question_5a_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5b_id}}">
+				{{poll.question_5b_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5b_id}}" name="{{poll.question_5b_id}}" placeholder="{{poll.question_5b_label}}" value = "{{poll.question_5b_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5c_id}}">
+				{{poll.question_5c_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5c_id}}" name="{{poll.question_5c_id}}" placeholder="{{poll.question_5c_label}}" value = "{{poll.question_5c_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+	</div>
+	<div class = "row col-md-12" style = "margin-top : 10px;">
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5d_id}}">
+				{{poll.question_5d_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5d_id}}" name="{{poll.question_5d_id}}" placeholder="{{poll.question_5d_label}}" value = "{{poll.question_5d_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5e_id}}">
+				{{poll.question_5e_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5e_id}}" name="{{poll.question_5e_id}}" placeholder="{{poll.question_5e_label}}" value = "{{poll.question_5e_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+		<div class = "col-md-4 form-group">
+		    <label for="{{poll.question_5f_id}}">
+				{{poll.question_5f_label}}
+			</label>
+			<input type="text" class="form-control datepicker" id="{{poll.question_5f_id}}" name="{{poll.question_5f_id}}" placeholder="{{poll.question_5f_label}}" value = "{{poll.question_5f_value|date:"Y-m-d"}}" {{ poll.canBeSaved|yesno:',readonly' }}>
+		</div>
+	</div>
+	<div class = "row col-md-12" style = "margin-top : 10px;">
+		<div class = "col-md-6 form-group">
+		    <label for="{{poll.question_5g_id}}">
+				{{poll.question_5g_label}}
+			</label>
+			<textarea class="form-control" rows="3" style = "resize:none;" id = "{{poll.question_5g_id}}" name = "{{poll.question_5g_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{poll.question_5g_value}}</textarea>
+		</div>
+		<div class = "col-md-6 form-group">
+		    <label for="{{poll.question_5h_id}}">
+				{{poll.question_5h_label}}
+			</label>
+			<textarea class="form-control" rows="3" style = "resize:none;" id = "{{poll.question_5h_id}}" name = "{{poll.question_5h_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{poll.question_5h_value}}</textarea>
+		</div>
+	</div>
+</div>
+{% endblock %}

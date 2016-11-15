@@ -1,0 +1,29 @@
+{% load contact_message %}
+
+<div class="panel panel-{{panelType|default:'primary'}}">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-xs-3">
+				<i class="fa fa-eye fa-5x"></i>
+			</div>
+			<div class="col-xs-9 text-right">
+				<div class="huge">
+					{% contact_message_count as contact_message_count %}
+					{{ contact_message_count }}
+				</div>
+				<div>
+					Visitas Nuevas!
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="#">
+		<div class="panel-footer">
+			<span class="pull-left">
+				Ver Visitas
+			</span>
+			<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+			<div class="clearfix"></div>
+		</div>
+	</a>
+</div>

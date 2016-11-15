@@ -1,0 +1,88 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+{% if staff %}
+	<div class = "row">
+		<div class = "col-md-12">
+			<div class = "col-md-2 col-md-offset-10">
+				<a href = "{% url 'system_polls_staff_add' %}">
+					<button type="button" class="btn btn-primary btn-lg">
+						Agregar Encuesta
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+{% endif %}
+	<div class = "row" id = "user-control">
+		<div class = "col-md-10 col-md-offset-1">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							Nombre
+						</th>
+						<th>
+							No. Encuestados
+						</th>
+						<th>
+							No. Supervisores
+						</th>
+						<th>
+							Status
+						</th>
+					{% if staff %}
+						<th>
+							Acciones
+						</th>
+					{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for poll in polls %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>
+						{% if staff %}
+							<a href = "{{ poll.viewStaffURL }}">
+								{{ poll.name }}
+							</a>
+						{% else %}
+							<a href = "{{ poll.viewSuperviserURL }}">
+								{{ poll.name }}
+							</a>
+						{% endif %}
+						</td>
+						<td>
+							{{ poll.supervisorCount }}
+						</td>
+						<td>
+							{{ poll.memberCount }}
+						</td>
+						<td>
+							{{ poll.statusText }}
+						</td>
+					{% if staff %}
+						<td>
+							{% include "system/polls/staff/list_actions.html" with poll=poll %}
+						</td>
+					{% endif %}
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}

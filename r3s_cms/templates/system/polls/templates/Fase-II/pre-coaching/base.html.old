@@ -1,0 +1,59 @@
+{% extends "system/polls/templates/base.html" %}
+
+
+{% block POLL_HEADING %}
+	<p class = "col-md-12">
+		<div class = "col-md-2 form-group form-group-sm">
+			<label for = "date" class = "control-label">
+				Fecha:
+			</label>
+			<input id = "date" class = "form-control" placeholder = "Fecha" value = "{{ poll.date|default:'' }}" readonly>
+		</div>
+	</p>
+	<p class = "col-md-12">
+		<div class = "col-md-5 form-group form-group-sm">
+			<label for = "coach-name" class = "control-label">
+				Nombre del Coach:
+			</label>
+			<input id = "coach-name" class = "form-control" placeholder = "Nombre del Coach" value = "{{ poll.coachName|default:'' }}" readonly>
+		</div>
+		<div class = "col-md-5 form-group form-group-sm">
+			<label for = "position" class = "control-label">
+				Puesto:
+			</label>
+			<input id = "position" class = "form-control" placeholder = "Puesto" value = "{{ poll.position|default:'' }}" readonly>
+		</div>
+		<div class = "col-md-2 form-group form-group-sm">
+			<label for = "hall" class = "control-label">
+				Sala:
+			</label>
+			<input id = "hall" class = "form-control" placeholder = "Sala" value = "{{ poll.hall|default:'' }}" readonly>
+		</div>
+	</p>
+{% endblock %}
+
+
+{% block POLL_BODY %}
+	{% with QUESTION_HOLDER_ID="question-holder" %}
+		<div class="panel-group" id="{{QUESTION_HOLDER_ID}}" role="tablist" aria-multiselectable="true">
+			<div class = "row col-md-12">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-1.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_1_answered question_id="question-1" question_body_id="question-body-1" question_title=poll.question_1_title question_header=poll.question_1_header question_id=poll.question_1_id always_open_override=False question_has_header=poll.question_1_has_header question_value=poll.question_1_value %}
+			</div>
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-2.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_2_answered question_id="question-2" question_body_id="question-body-2" question_title=poll.question_2_title question_header=poll.question_2_header question_id=poll.question_2_id always_open_override=False question_has_header=poll.question_2_has_header %}
+			</div>
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-3.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_3_answered question_id="question-3" question_body_id="question-body-3" question_title=poll.question_3_title question_header=poll.question_3_header question_id=poll.question_3_id always_open_override=False question_has_header=poll.question_3_has_header %}
+			</div>
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-4.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_4_answered question_id="question-4" question_body_id="question-body-4" question_title=poll.question_4_title question_header=poll.question_4_header question_id=poll.question_4_id always_open_override=False question_has_header=poll.question_4_has_header %}
+			</div>
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-5.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_5_answered question_id="question-5" question_body_id="question-body-5" question_title=poll.question_5_title question_header=poll.question_5_header question_id=poll.question_5_id always_open_override=False question_has_header=poll.question_5_has_header %}
+			</div>
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				{% include "system/polls/templates/Fase-II/pre-coaching/question-6.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_6_answered question_id="question-6" question_body_id="question-body-6" question_title=poll.question_6_title question_header=poll.question_6_header question_id=poll.question_6_id always_open_override=False question_has_header=poll.question_6_has_header question_value=poll.question_6_value %}
+			</div>
+		</div>
+	{% endwith %}
+{% endblock %}

@@ -1,0 +1,8 @@
+<div class="panel-group" id="{{QUESTION_HOLDER_ID}}" role="tablist" aria-multiselectable="true">
+	<div class = "row col-m-12">
+		{% include "system/polls/templates/Fase-I/inventario-talento/question-1.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_1_answered question_id="question-1" question_body_id="question-body-1" question_title=poll.question_1_title %}
+	</div>
+	<div class = "row col-m-12" style = "margin-top : 10px;">
+		{% include "system/polls/templates/Fase-I/inventario-talento/question-2.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_2_answered question_id="question-2" question_body_id="question-body-2" question_title=poll.question_2_title %}
+	</div>
+</div>

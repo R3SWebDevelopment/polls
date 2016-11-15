@@ -1,0 +1,24 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row">
+		<div class="col-lg-3 col-md-6">
+			{% include "system/contact-message/widget.html" %}
+		</div>
+		<div class="col-lg-3 col-md-6">
+			{% include "system/page-hits/widget.html" with panelType='green' %}
+		</div>
+		<div class="col-lg-3 col-md-6">
+			{% include "system/imagery/widget.html" with panelType='red' %}
+		</div>
+		<div class="col-lg-3 col-md-6">
+			{% include "system/users/widget.html" with panelType='yellow' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+{% endblock %}

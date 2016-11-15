@@ -1,0 +1,33 @@
+{% load imagery %}
+{% load base_tags %}
+{% get_siteurl as siteurl %}
+<div id="cover" class="carousel slide">
+	
+	{% public_cover_images as covers %}
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+	{% for cover in covers %}
+        <li data-target="#cover" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|yesno:'active,'}}"></li>
+	{% endfor %}
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+	{% for cover in covers %}
+	    <div class="item {{forloop.first|yesno:'active,'}}">
+	        <div class="fill" style="background-image:url('{{siteurl}}{{cover.url}}');"></div>
+	        <div class="carousel-caption">
+	            <h1>{{cover.title|default:''}}</h1>
+	        </div>
+	    </div>	
+	{% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#cover" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#cover" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</div>

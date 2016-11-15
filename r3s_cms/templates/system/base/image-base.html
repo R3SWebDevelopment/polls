@@ -1,0 +1,11 @@
+{% if image %}
+<div class = "col-md-{{COL_MD|default:3}}" style = "margin-top : 5px;">
+	<img src = "{{image.url}}" class = "img-thumbnail img-responsive" style = " height : {{IMAGE_HEIGHT|default:'auto'}};">
+</div>
+{% elif images %}
+	{% for image in images %}
+		<div class = "col-md-{{COL_MD|default:3}}"  style = "margin-top : 5px;">
+			<img src = "{{image.url}}" class = "img-thumbnail img-responsive"  style = " height : {{IMAGE_HEIGHT|default:'auto'}};">
+		</div>
+	{% endfor %}
+{% endif %}

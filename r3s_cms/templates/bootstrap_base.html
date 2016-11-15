@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load base_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	{% block PAGE_HEAD_META %}
+	{% endblock %}
+		<title>
+	{% block PAGE_HEAD_TITLE %}
+			R3S CMS - Bootstrap Base
+	{% endblock %}
+		</title>
+		<link rel="stylesheet" type="text/less" media="all" href="{% static "css/fixing.less" %}" />
+		<link href = "/static/bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+		<link href = "/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href = "/static/css/addons/tagsInput/tags.css" rel = "stylesheet">
+	{% block PAGE_CSS %}
+	{% endblock %}
+		{% systemGoogleAnalytics %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{#		<script src="/static/bootstrap/js/bootstrap.min.js"></script>#}
+		<script src="/static/jquery-ui/jquery-ui.min.js"></script>
+		<script>
+		  less = {
+		    env: "development",
+		    async: false,
+		    fileAsync: false,
+		    poll: 1000,
+		    functions: {},
+		    dumpLineNumbers: "comments",
+		    relativeUrls: false,
+		    rootpath: ":/a.com/"
+		  };
+		</script>
+		<script src="/static/less/less.min.js" type="text/javascript"></script>
+		<script src="/static/css/addons/tagsInput/tags.js"></script>
+	</head>
+	<body>
+	{% block PAGE_BODY %}
+	{% endblock %}
+{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+{#	<script src="/static/jquery-ui/jquery-ui.min.js"></script>#}
+	<script src="/static/bootstrap/js/modal.js"></script>
+	<script src="/static/bootstrap/js/tooltip.js"></script>
+	<script src="/static/js/base.js"></script>
+	{% block PAGE_JS %}
+	{% endblock %}
+	</body>
+</html>

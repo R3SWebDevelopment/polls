@@ -1,0 +1,24 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12">
+	<p class = "row col-md-12 form-group" style = "margin-top : 10px;">
+	    <label for="{{poll.question_4a_id}}">
+			{{poll.question_4a_label}}
+		</label>
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "{{poll.question_4a_id}}" name = "{{poll.question_4a_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{poll.question_4a_value}}</textarea>
+	</p>
+	<p class = "row col-md-12 form-group" style = "margin-top : 10px;">
+	    <label for="{{poll.question_4b_id}}">
+			{{poll.question_4b_label}}
+		</label>
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "{{poll.question_4b_id}}" name = "{{poll.question_4b_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{poll.question_4b_value}}</textarea>
+	</p>
+	<p class = "row col-md-12 form-group" style = "margin-top : 10px;">
+	    <label for="{{poll.question_4c_id}}">
+			{{poll.question_4c_label}}
+		</label>
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "{{poll.question_4c_id}}" name = "{{poll.question_4c_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{poll.question_4c_value}}</textarea>
+	</p>
+</div>
+{% endblock %}

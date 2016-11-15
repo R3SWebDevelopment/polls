@@ -1,0 +1,21 @@
+{% load system_tags %}
+{% dashboard_menu currentSection=CURRENT_SECTION as menu %}
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                {% dashboad_business_label %}
+            </a>
+        </li>
+	{% for item in menu %}
+        <li class="{{ item.active|yesno:'active' }}">
+            <a href="{{ item.url|default:'#' }}">
+{#				<i class="fa fa-fw {{ item.icon }}"></i>#}
+				{{ item.label }}
+			</a>
+        </li>
+	{% endfor %}
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->

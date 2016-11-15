@@ -1,0 +1,51 @@
+{% load base_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>
+		{% block PAGE_TITLE %}
+			Signin Template for Bootstrap
+		{% endblock %}
+		</title>
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet/less" type="text/css" href="/static/css/fixing.less" />
+		<link href = "/static/bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+		<link href = "/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/apps/system/simple-template/base.css" rel="stylesheet">
+		
+		{% systemGoogleAnalytics %}
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{#		<script src="/static/bootstrap/js/bootstrap.min.js"></script>#}
+		<script src="/static/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/less/less.min.js"></script>
+		<script src="/static/css/addons/tagsInput/tags.js"></script>
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+		{% block PAGE_BODY %}
+		{% endblock %}
+		</div> <!-- /container -->
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	{#	<script src="/static/jquery-ui/jquery-ui.min.js"></script>#}
+		<script src="/static/bootstrap/js/modal.js"></script>
+		<script src="/static/js/base.js"></script>
+		{% block PAGE_JS %}
+		{% endblock %}
+	</body>
+</html>

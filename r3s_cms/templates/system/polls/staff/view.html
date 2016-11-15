@@ -1,0 +1,327 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+{% load polls_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row" id = "user-control">
+		<div class = "col-md-10 col-md-offset-1">
+		{% if errors|length > 0 %}
+			<div class = "row">
+				<div class = "col-md-12 alert alert-danger" role="alert">
+					{% for error in errors %}
+						<p>
+						{% if error.membersNeeded %}
+							Debe de Seleccionar al Menos un Encuestado
+						{% endif %}
+						{% if error.pollsNeeded %}
+							Debe de Seleccionar al Menos una Encuesta
+						{% endif %}
+						</p>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+			<div class = "row">
+				<div class = "col-md-offset-8 col-md-4 text-right">
+					<h3>
+						Status : 
+						<strong>
+							{{ poll.status }}
+						</strong>
+					<h3>
+				</div>
+			</div>
+			<form action = '{{ submitUrl }}' method = "POST">
+				{% csrf_token %}
+				<div class = "row">
+					<div class = "col-md-12 text-center">
+						<img src="{{ poll.logoURL }}" class="img-thumbnail" style = "height : 150px; width : 150px;">
+					</div>
+				{% if staff %}
+					<div class = "col-md-12" style = "margin-top : 10px;">
+						<div class = "col-md-1 col-md-offset-3 text-right">
+							<strong>
+								Logo:
+							</strong>
+						</div>
+						<div class = "col-md-5">
+							<div class="input-group">
+								<input type="file" class="form-control" name = "logoImage" id = "logoImage">
+								<div class="input-group-btn">
+									<button type="button" id = "uploadLogo" class="btn btn-primary" data-action = "{% url 'system_polls_staff_logo_upload_submit' poll=poll.id%}">
+									{% if poll.hasLogo %}
+										Cambiar Imagen
+									{% else %}
+										Subir Imagen
+									{% endif %}
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+				</div>
+				<div class="form-group has-feedback {% if nameError == True or nameExistsError == True %} has-error {% elif nameError == False or nameExistsError == False %} has-success {% else %}  {% endif %}">
+					<label for="name">
+						Nombre
+					</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value = "{{ poll.name|default:'' }}" {{ poll.isEditable|yesno:",disabled" }} {{ staff|yesno:",disabled" }}>
+					<span class="glyphicon glyphicon-ok form-control-feedback {{ nameError|yesno:"hide,,hide" }}" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback {{ nameError|yesno:",hide,hide" }}" aria-hidden="true"></span>
+					<span id="firstNameError" class="help-block {{ nameError|yesno:",hide" }}">
+						Debe de especificar el nombre
+					</span>
+					<span id="firstNameError" class="help-block {{ nameExistsError|yesno:",hide" }}">
+						El Nombre Ya Esta Registrado
+					</span>
+				</div>
+				<div class = "row">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<div class = "row">
+									<div class = "col-md-9">
+										Encuestados
+									</div>
+									<div class = "col-md-3">
+									{% if poll.isEditable and staff %}
+										<a href = "{{ poll.staffSelectMembersURL }}">
+											<button type="button" class="btn btn-default btn-xs pull-right">
+												Seleccionar...
+											</button>
+										</a>
+									{% endif %}
+									</div>
+								</div>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>
+											No.
+										</th>
+										<th>
+											Nombre
+										</th>
+										<th>
+											Grupo(s)
+										</th>
+									{% if poll.isEditable and staff %}
+										<th>
+											Accion
+										</th>
+									{% else %}
+										<th>
+											Progreso
+										</th>
+									{% endif %}
+									</tr>
+								</thead>
+								<tbody>
+								{% for member in poll.getMembers %}
+									<tr data-id = "{{ member.id }}">
+										<td>
+											{{ forloop.counter }}
+										</td>
+										<td>
+										{% if staff %}
+											<a href = "{{ member|pollProgressURL:poll }}">
+												{{ member.get_full_name }}
+											</a>
+										{% else %}
+										<a href = "{{ member|pollSuperviserProgressURL:poll }}">
+											{{ member.get_full_name }}
+										</a>
+										{% endif %}
+										</td>
+										<td>
+											{{ member.getGroup }}
+										</td>
+									{% if poll.isEditable and staff %}
+										<td>
+											<a href = "{% url 'system_polls_staff_remove_member' poll=poll.id member=member.id %}">
+												<button type="button" class="btn btn-primary btn-xs">
+													Eliminar
+												</button>
+											</a>
+										</td>
+									{% else %}
+										<td>
+											<a href = "{{ member|pollProgressURL:poll }}">
+											{{ member|pollProgress:poll }}
+											</a>
+										</td>
+									{% endif %}
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class = "row">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<div class = "row">
+									<div class = "col-md-9">
+										Supervisores
+									</div>
+									<div class = "col-md-3">
+									{% if poll.isEditable and staff %}
+										<a href = "{{ poll.staffSelectSuperviserURL }}">
+											<button type="button" class="btn btn-default btn-xs pull-right">
+												Seleccionar...
+											</button>
+										</a>
+									{% endif %}
+									</div>
+								</div>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>
+											No.
+										</th>
+										<th>
+											Nombre
+										</th>
+										<th>
+											Grupo(s)
+										</th>
+									{% if poll.isEditable and staff %}
+										<th>
+											Accion
+										</th>
+									{% endif %}
+									</tr>
+								</thead>
+								<tbody>
+								{% for member in poll.getSupervisers %}
+									<tr data-id = "{{ member.id }}">
+										<td>
+											{{ forloop.counter }}
+										</td>
+										<td>
+											{{ member.get_full_name }}
+										</td>
+										<td>
+											{{ member.getGroup }}
+										</td>
+									{% if poll.isEditable and staff %}
+										<td>
+											<a href = "{% url 'system_polls_staff_superviser_member' poll=poll.id member=member.id %}">
+												<button type="button" class="btn btn-primary btn-xs">
+													Eliminar
+												</button>
+											</a>
+										</td>
+									{% endif %}
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class = "row">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<div class = "row">
+									<div class = "col-md-9">
+										Encuestas
+									</div>
+									<div class = "col-md-3">
+									{% if poll.isEditable and staff %}
+										<a href = "{{ poll.staffSelectPollsURL }}">
+											<button type="button" class="btn btn-default btn-xs pull-right">
+												Seleccionar...
+											</button>
+										</a>
+									{% endif %}
+									</div>
+								</div>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>
+											No.
+										</th>
+										<th>
+											Sección
+										</th>
+										<th>
+											Nombre
+										</th>
+									{% if poll.isEditable and staff %}
+										<th>
+											Accion
+										</th>
+									{% endif %}
+									</tr>
+								</thead>
+								<tbody>
+								{% for p in poll.pollsList %}
+									<tr data-id = "{{ p.id }}">
+										<td>
+											{{ forloop.counter }}
+										</td>
+										<td>
+											{{ p.sectionName }}
+										</td>
+										<td>
+											{{ p.name }}
+										</td>
+									{% if poll.isEditable and staff %}
+										<td>
+											<a href = "{{ p.staffRemoveURL }}">
+												<button type="button" class="btn btn-primary btn-xs">
+													Eliminar
+												</button>
+											</a>
+										</td>
+									{% endif %}
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+		{% if staff %}
+			{% if poll.isEditable %}
+				<div class = "row">
+					<button type="submit" class="btn btn-primary col-md-12 ">
+						Guardar Cambios
+					</button>
+				</div>
+			{% endif %}
+			{% if poll.isStarted == False %}
+				<div class = "row" style = "margin-top : 10px;">
+					<a href = "{{ poll.staffStartPollsURL }}">
+						<button type="button" class="btn btn-success btn-lg col-md-12" {{ poll.isStartEnabled|yesno:",disabled" }}>
+							Iniciar Encuesta
+						</button>
+					</a>
+				</div>
+			{% endif %}
+		{% endif %}
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/polls/staff.js"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "system/base/panel-base.html" %}
+
+{% block PANEL_BASE_BODY %}
+	<div class = "row col-md-12">
+		<div class = "col-md-6">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">
+					Subir Imagenes
+				</div>
+				<div class = "panel-body" style = "height : 100px;">
+					<form action="{{ UPLOAD_ACTION }}" method="post" enctype="multipart/form-data" id="upload-image-section" data-image_grid_holder = "{{IMAGE_GRID_HOLDER}}">
+						{% csrf_token %}
+						<input type="file" name="image[]" id="js-upload-files" multiple>
+						<button type="submit" id = "submit" class="btn btn-primary btn-sm col-md-12" data-image_grid_holder = "{{IMAGE_GRID_HOLDER}}" style = "margin-top : 10px;">
+							Subir
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class = "col-md-6">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">
+					Seleccionar Imagenes
+				</div>
+				<div class = "panel-body" style = "height : 100px;">
+					<button type="button" class="btn btn-primary btn-lg col-md-12" data-image_grid_holder = "{{IMAGE_GRID_HOLDER}}">
+						Seleccionar ..
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PANEL_BASE_FOOTER %}
+	&nbsp
+{% endblock %}

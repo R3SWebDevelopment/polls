@@ -1,0 +1,13 @@
+{% extends "system/base/panel-base.html" %}
+
+{% block PANEL_BASE_EXTRA %}
+{% include 'system/base/list-base.html' with data=data %}
+{% endblock %}
+
+{% block PANEL_BASE_FOOTER %}
+	{% if PAGINATED_TABLE == True %}
+		&nbsp
+	{% else %}
+		&nbsp
+	{% endif %}
+{% endblock %}

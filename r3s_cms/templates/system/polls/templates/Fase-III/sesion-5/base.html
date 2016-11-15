@@ -1,0 +1,30 @@
+<div class = "row">
+	{% if poll.hasHeader %}
+		<div class = "row col-md-12 well well-sm">
+			{{ poll.getHeader|default:''|safe|escape }}
+		</div>
+	{% endif %}
+	<div class="panel-group" id="{{QUESTION_HOLDER_ID}}" role="tablist" aria-multiselectable="true">
+		<div class = "row col-md-12">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-1.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_1_answered question_id="question-1" question_body_id="question-body-1" question_title=poll.question_1_title question_header=poll.question_1_header question_id=poll.question_1_id always_open_override=False question_has_header=poll.question_1_has_header question_value=poll.question_1_value question_list_limit=3 %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-2.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_2_answered question_id="question-2" question_body_id="question-body-2" question_title=poll.question_2_title question_header=poll.question_2_header question_id=poll.question_2_id always_open_override=False question_has_header=poll.question_2_has_header question_value=poll.question_2_value question_list_limit=3 %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-3.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_3_answered question_id="question-3" question_body_id="question-body-3" question_title=poll.question_3_title question_header=poll.question_3_header question_id=poll.question_3_id always_open_override=False question_has_header=poll.question_3_has_header question_value=poll.question_3_value %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-4.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_4_answered question_id="question-4" question_body_id="question-body-4" question_title=poll.question_4_title question_header=poll.question_4_header question_id=poll.question_4_id always_open_override=False question_has_header=poll.question_4_has_header question_value=poll.question_4_value %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-5.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_5_answered question_id="question-5" question_body_id="question-body-5" question_title=poll.question_5_title question_header=poll.question_5_header question_id=poll.question_5_id always_open_override=False question_has_header=poll.question_5_has_header question_value=poll.question_5_value %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-6.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_6_answered question_id="question-6" question_body_id="question-body-6" question_title=poll.question_6_title question_header=poll.question_6_header question_id=poll.question_6_id always_open_override=False question_has_header=poll.question_6_has_header question_value=poll.question_6_value %}
+		</div>
+		<div class = "row col-md-12" style = "margin-top : 10px; margin-bottom : 10px;">
+			{% include "system/polls/templates/Fase-III/sesion-5/question-7.html" with question_holder=QUESTION_HOLDER_ID question_answered=poll.question_7_answered question_id="question-7" question_body_id="question-body-7" question_title=poll.question_7_title question_header=poll.question_7_header question_id=poll.question_7_id always_open_override=False question_has_header=poll.question_7_has_header question_value=poll.question_7_value %}
+		</div>
+	</div>
+</div>

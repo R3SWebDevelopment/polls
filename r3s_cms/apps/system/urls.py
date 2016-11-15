@@ -1,0 +1,65 @@
+from django.conf.urls import patterns, include, url
+from views import *
+
+urlpatterns = patterns('',
+	url(r'/dashboard/$' , system_dashboard , name = 'system_dashboard') ,
+######SYSTEM PROFILE
+	url(r'^/profile/$' , system_users_view , { 'profile' : True } , name = 'system_profile') ,
+	url(r'^/profile/submit/$' , system_users_submit , { 'profile' : True } , name = 'system_profile_submit') ,
+######SYSTEM ACCESS
+	url(r'^/logout/$' , system_logout , name = 'system_logout') ,
+	url(r'/login/submit/$' , system_login_submit , name = 'system_login_submit') ,
+	url(r'/login/not-data/$' , system_login_error , name = 'system_login_error_not_data') ,
+	url(r'/login/not-exists/$' , system_login_error , name = 'system_login_error_not_exists') ,
+	url(r'/login/not-auth/$' , system_login_error , name = 'system_login_error_not_auth') ,
+######SYSTEM QUESTIONNAIRE STOCK
+	url(r'/questionnaire/stack/$' , system_questionnaire_stack , name = 'system_questionnaire_stack') ,	
+	url(r'/questionnaire/stack/(?P<poll_id>\w+)/view/$' , system_questionnaire_stack_staff_view , name = 'system_questionnaire_stack_staff_view') ,
+######SYSTEM USERS
+	url(r'/users/$' , system_users , name = 'system_users') ,
+	url(r'/users/request-access/$' , system_users_request_access , name = 'system_users_request_access') ,
+	url(r'/users/request-access/list/$' , system_users_request_access_list , name = 'system_users_request_access_list') ,
+	url(r'/users/request-access/(?P<request_id>\w+)/list/process/$' , system_users_request_access_process , name = 'system_users_request_access_process') ,
+	url(r'/users/request-access/(?P<request_id>\w+)/list/cancel/$' , system_users_request_access_cancel , name = 'system_users_request_access_cancel') ,
+	url(r'/users/request-access/submit/$' , system_users_request_access_submit , name = 'system_users_request_access_submit') ,
+	url(r'/users/request-access/submit/error/$' , system_users_request_access_submit_response , { 'error' : True } , name = 'system_users_request_access_submit_error') ,
+	url(r'/users/request-access/submit/confirmation/$' , system_users_request_access_submit_response , { 'success' : True } , name = 'system_users_request_access_submit_confirmation') ,
+	url(r'/users/add/$' , system_users_add , name = 'system_users_add') ,
+	url(r'/users/add/submit/$' , system_users_add_submit , name = 'system_users_add_submit') ,
+	url(r'/users/staff/add/$' , system_users_add , { 'staff' : True } , name = 'system_users_staff_add') ,
+	url(r'/users/staff/add/submit/$' , system_users_add_submit , { 'staff' : True } , name = 'system_users_staff_add_submit') ,
+	url(r'/users/staff/list/$' , system_users_list , { 'staff' : True } , name = 'system_users_staff_list') ,
+	url(r'/users/staff/(?P<username>\w+)/view/$' , system_users_view , { 'staff' : True } , name = 'system_users_staff_view') ,
+	url(r'/users/staff/(?P<username>\w+)/submit/$' , system_users_submit , { 'staff' : True } , name = 'system_users_staff_submit') ,
+	url(r'/users/list/$' , system_users_list , name = 'system_users_list') ,
+	url(r'/users/verify/email/$' , system_users_verify_email , name = 'system_users_verify_email') ,
+	url(r'/users/verify/username/$' , system_users_verify_username , name = 'system_users_verify_username') ,
+	url(r'/users/list/$' , system_users_list , name = 'system_users_list') ,
+	url(r'/users/groups/list/$' , system_users_groups_list , name = 'system_users_groups_list') ,
+	url(r'/users/groups/add/$' , system_users_groups_add , name = 'system_users_groups_add') ,
+	url(r'/users/groups/add/submit/$' , system_users_groups_add_submit , name = 'system_users_groups_add_submit') ,
+	url(r'/users/groups/(?P<group>\w+)/view/$' , system_users_groups_view , name = 'system_users_groups_view') ,
+	url(r'/users/groups/(?P<group>\w+)/submit/$' , system_users_groups_view_submit , name = 'system_users_groups_view_submit') ,
+	url(r'/users/(?P<username>\w+)/view/$' , system_users_view , name = 'system_users_view') ,
+	url(r'/users/(?P<username>\w+)/submit/$' , system_users_submit , name = 'system_users_submit') ,
+	url(r'/users/(?P<username>\w+)/status/active/$' , system_users_status_active , name = 'system_users_status_active') ,
+	url(r'/users/(?P<username>\w+)/status/deactive/$' , system_users_status_deactive , name = 'system_users_status_deactive') ,
+	url(r'/users/(?P<username>\w+)/password/reset/$' , system_users_reset_password , name = 'system_users_reset_password') ,
+######SYSTEM IMAGERY
+	url(r'/imagery/$' , system_imagery , name = 'system_imagery') ,
+	url(r'/imagery/add/$' , system_imagery_add , name = 'system_imagery_add') ,
+	url(r'/imagery/add/submit/$' , system_imagery_add_submit , name = 'system_imagery_add_submit') ,
+	url(r'/imagery/view/(?P<album_id>\w+)/$' , system_imagery_view , name = 'system_imagery_view') ,
+	url(r'/imagery/upload/(?P<album_id>\w+)/$' , system_imagery_upload , name = 'system_imagery_upload') ,
+######SYSTEM POLLS
+	url(r'/polls' , include('r3s_cms.apps.polls.system_urls')) ,
+######SYSTEM BASES
+	url(r'/error/$' , system_error , name = 'system_error') ,
+######SYSTEM TEST	
+#	url(r'/test/bootstrap/general/(?P<view>\w+)/$' , system_test_bootstrap_general , name = 'system_test_bootstrap_general') ,
+#	url(r'/test/bootstrap/desktop/(?P<view>\w+)/$' , system_test_bootstrap_desktop , name = 'system_test_bootstrap_desktop') ,
+#	url(r'/test/bootstrap/iphone/(?P<view>\w+)/$' , system_test_bootstrap_iphone , name = 'system_test_bootstrap_iphone') ,
+#	url(r'/test/bootstrap/ipad/(?P<view>\w+)/$' , system_test_bootstrap_ipad , name = 'system_test_bootstrap_ipad') ,
+#	url(r'/test/bootstrap/mobile/(?P<view>\w+)/$' , system_test_bootstrap_mobile , name = 'system_test_bootstrap_mobile') ,
+#	url(r'/test/bootstrap/tablet/(?P<view>\w+)/$' , system_test_bootstrap_tablet , name = 'system_test_bootstrap_tablet') ,
+)

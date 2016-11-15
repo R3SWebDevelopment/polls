@@ -1,0 +1,72 @@
+{% extends "system/base/simple-template.html" %}
+{% load system_tags %}
+
+
+{% block PAGE_HEAD_TITLE %}
+	Error
+{% endblock %}
+
+{% block PAGE_BODY %}
+	<div class="container">
+		<div class = "row" id = "user-control">
+			<div class = "col-md-6 col-md-offset-3">
+				<div class = "row">
+					<div class = "col-md-12" style = "margin-bottom : 50px;">
+						<img src = "/static/img/apps/content/logo.png" class="img-responsive" style = "margin : auto;">
+					</div>
+					<h1 class = "text-center">
+						Solicitar Acceso al Sistema
+					</h1>
+				</div>
+				<div class = "row">
+				{% if error %}
+					<div class="alert alert-danger" role="alert">
+						<div class = "row text-center">
+							<i class="fa fa-exclamation-triangle fa-5x"></i>
+							<h1>
+								{{ error_message|default:'' }}
+							</h1>
+							<button type="button" class="btn btn-danger btn-lg">
+								<a href = "{% url 'system_login' %}">
+									Ir a Inicio
+								</a>
+							</button>
+						</div>
+					</div>
+				{% elif access %}
+					<div class="alert alert-success" role="alert">
+						<div class = "row text-center">
+							<i class="fa fa-check-circle fa-5x"></i>
+							<h1>
+								{{ error_message|default:'' }}
+							</h1>
+							<button type="button" class="btn btn-success btn-lg">
+								<a href = "{% url 'system_login' %}">
+									Ir a Inicio
+								</a>
+							</button>
+						</div>
+					</div>
+				{% else %}
+					<div class="alert alert-success" role="alert">
+						<div class = "row text-center">
+							<button type="button" class="btn btn-success btn-lg">
+								<a href = "{% url 'system_login' %}">
+									Ir a Inicio
+								</a>
+							</button>
+						</div>
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% for improvement in poll.improvementsTwo %}
+<tr>
+	<td class = "text-center">
+		{{ improvement.resource|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.habit|yesno:'Si,No' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.actitude|yesno:'Si,No' }}
+	</td>
+	<td class = "text-center">
+		{{ improvement.learning|yesno:'Si,No' }}
+	</td>
+	<td class = "text-center">
+		<textarea class="form-control" rows="3" style = "resize:none;" id = "description_id" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ improvement.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "IMPROVEMENT-TWO">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

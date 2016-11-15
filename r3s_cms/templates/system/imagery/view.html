@@ -1,0 +1,19 @@
+{% extends "system/dashboard/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	{% include 'system/base/form-base.html' with form=form FORM_SUBMIT_LABEL=form_submit_label form_action=form_action %}
+{% if viewing %}
+	<div class = "row col-md-12" style = "margin-top : 20px;" id = "image_upload_panel">
+		{% include 'system/imagery/upload-panel.html' with UPLOAD_ACTION=UPLOAD_ACTION IMAGE_GRID_HOLDER='#image_grid_panel' PANEL_TITLE='Agregar Imagenes al Album' PANEL_SUBTITLE='' PANEL_TYPE='primary' %}
+	</div>
+	<div class = "row col-md-12" style = "margin-top : 20px;" id = "image_grid_panel">
+		{% include 'system/base/panel-image-grid.html' with PANEL_TITLE='Imagenes' PANEL_SUBTITLE='' PANEL_TYPE='primary' images=images IMAGE_HEIGHT='200px' %}
+	</div>
+{% endif %}
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/imagery/base.js"></script>
+{% endblock %}

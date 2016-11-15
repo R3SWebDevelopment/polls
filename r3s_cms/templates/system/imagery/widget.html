@@ -1,0 +1,29 @@
+{% load imagery %}
+
+<div class="panel panel-{{panelType|default:'primary'}}">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-xs-3">
+				<i class="fa fa-picture-o fa-5x"></i>
+			</div>
+			<div class="col-xs-9 text-right">
+				<div class="huge">
+					{% photo_albums_count as photo_albums_count %}
+					{{ photo_albums_count }}
+				</div>
+				<div>
+					Ver Albumes!
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="{% url 'system_imagery' %}">
+		<div class="panel-footer">
+			<span class="pull-left">
+				Ver Albumes
+			</span>
+			<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+			<div class="clearfix"></div>
+		</div>
+	</a>
+</div>

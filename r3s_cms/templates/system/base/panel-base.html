@@ -1,0 +1,26 @@
+<div class = "row col-md-12">
+	<div class="panel panel-{{PANEL_TYPE|default:'default'}}">
+		<div class="panel-heading">
+		{% block PANEL_BASE_HEADING %}
+			{{ PANEL_TITLE}}
+		{% if PANEL_LISTED == True %}
+			<span class="badge">
+				{{ data.count }}
+			</span>
+		{% endif %}
+		{% endblock %}
+		</div>
+		<div class="panel-body">			
+		{% block PANEL_BASE_BODY %}
+			Basic panel example
+		{% endblock %}
+		</div>
+	{% block PANEL_BASE_EXTRA %}
+	{% endblock %}
+		<div class="panel-footer">
+		{% block PANEL_BASE_FOOTER %}
+			Panel footer
+		{% endblock %}
+		</div>
+	</div>
+</div>

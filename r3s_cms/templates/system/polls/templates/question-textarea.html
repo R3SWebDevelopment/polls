@@ -1,0 +1,8 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12 form-group">
+	<textarea class="form-control" rows="3" style = "resize:none;" id = "id_{{question_id}}" name = "{{question_id}}" {{ poll.canBeSaved|yesno:',readonly' }}>{{question_value|default:''}}</textarea>
+</div>
+{% endblock %}

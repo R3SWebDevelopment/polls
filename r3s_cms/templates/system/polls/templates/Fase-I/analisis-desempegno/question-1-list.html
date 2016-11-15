@@ -1,0 +1,18 @@
+{% for performance in poll.talentos %}
+<tr data-id = "{{performance.id}}">
+	<td class = "text-center">
+		<input id = "name_{{performance.id}}" name = "name_{{performance.id}}" placeholder = "Nombre" value = "{{performance.name}}" class = "col-md-12" readonly>
+	</td>
+	<td class = "text-center">
+		{{ performance.performance|title }}
+	</td>
+	<td class = "text-center">
+		{{ performance.actitute|title }}
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ performance.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "COACHEES">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

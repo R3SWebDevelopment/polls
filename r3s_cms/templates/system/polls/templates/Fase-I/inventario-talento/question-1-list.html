@@ -1,0 +1,21 @@
+{% for talento in poll.getTalentos %}
+<tr id = "{{ talento.id }}">
+	<td class = "text-center">
+		<input id = "id_name" name = "name_{{ talento.id }}" placeholder = "Nombre" value = "{{ talento.name|default:'' }}" class = "col-md-12" readonly>
+	</td>
+	<td class = "text-center">
+		<input id = "id_position" name = "position_{{ talento.id }}" placeholder = "Puesto" value = "{{ talento.position|default:'' }}" class = "col-md-12" readonly>
+	</td>
+	<td class = "text-center">
+		<input id = "id_years" name = "years_{{ talento.id }}" placeholder = "Años" value = "{{ talento.years|default:'' }}" class = "col-md-12" readonly>
+	</td>
+	<td class = "text-center">
+		<input id = "id_months" name = "months_{{ talento.id }}" placeholder = "Meses" value = "{{ talento.months|default:'' }}" class = "col-md-12" readonly>
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ talento.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "talentos">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

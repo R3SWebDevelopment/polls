@@ -1,0 +1,27 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+{% load polls_tags %}
+
+{% block DASHBOARD_BODY %}
+	<form method = "POST" action = "" id = "responsePoll">
+		<input type = "hidden" id = "id_instanceId" name = "instanceId" value = "">
+		<input type = "hidden" id = "id_action" name = "action" value = "UPDATE">
+		<input type = "hidden" id = "id_source" name = "source" value = "GENERAL">
+		<div class = "row" id = "poll-body">
+		{% with template=questionnaire.template %}
+			{% if template %}
+			<div class = "col-md-10 col-md-offset-1">
+				{% include template with poll=questionnaire.ModelClass QUESTION_HOLDER_ID=None %}
+			</div>
+			{% endif %}
+		{% endwith %}
+		</div>
+	</form>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+	<script src="/static/js/apps/system/polls/polls.js"></script>
+{% endblock %}

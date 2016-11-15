@@ -1,0 +1,68 @@
+{% extends "system/polls/templates/question-general.html" %}
+
+{% block QUESTION_BODY_CONTROL %}
+<div class = "row col-md-12">
+	{% include "system/polls/templates/Fase-IV/analisis-avances/question-1-list.html" with poll=poll %}
+
+{% if poll.isSaveEnabled or True %}
+	{% if question_list_limit >= question_value|length %}
+		<div class = "row col-md-12" style = "margin-top : 10px;">
+			<div class = "row col-md-12" style = "margin-top : 10px;">
+				<div class = "col-md-4 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Descripción
+					</label>
+					<textarea class="form-control" rows="2" style = "resize:none;" id = "aa_description" name = "aa_description" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>					
+				</div>
+				<div class = "col-md-2 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Evidencia
+					</label>
+					<textarea class="form-control" rows="2" style = "resize:none;" id = "aa_evidence" name = "aa_evidence" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>					
+				</div>
+				<div class = "col-md-2 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Indicador Establecido
+					</label>
+					<textarea class="form-control" rows="2" style = "resize:none;" id = "aa_indicator" name = "aa_indicator" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>					
+				</div>
+				<div class = "col-md-2 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Resultado Real
+					</label>
+					<textarea class="form-control" rows="2" style = "resize:none;" id = "aa_result" name = "aa_result" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>					
+				</div>
+				<div class = "col-md-2 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Tarea Concluida
+					</label>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionsRadios" id="aa_finished" name = "aa_finished" value="True" checked>
+							Si
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionsRadios" id="aa_finished" name = "aa_finished" value="False">
+							No
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class = "row col-md-12 form-group" style = "margin-top : 10px;">
+				<div class = "col-md-10 form-group">
+				    <label for="{{poll.question_4b_id}}">
+						Comentarios Generales
+					</label>
+					<textarea class="form-control" rows="2" style = "resize:none;" id = "aa_comments" name = "aa_comments" {{ poll.canBeSaved|yesno:',readonly' }}></textarea>					
+				</div>
+				<div class = "col-md-2 form-group">
+					<button class="btn btn-primary btn-lg add-row" type="submit" data-id = "" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "ADD" data-source = "TASK">Agregar</button>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endif %}
+</div>
+{% endblock %}

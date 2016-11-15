@@ -1,0 +1,32 @@
+{% load users %}
+
+<div class="panel panel-{{data.type|default:'primary'}}">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-xs-3">
+				<i class="fa {{ data.icon|default:'' }} fa-5x"></i>
+			</div>
+			<div class="col-xs-9 text-right">
+				<div class="huge">
+					{{ data.counter }}
+				</div>
+				<div>
+					<a href = "{{ data.mainUrl|default:'#' }}" style = "color : white;">
+						{{ data.mainLabel }}
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="#">
+		<div class="panel-footer">
+			<a href = "{{ data.secundaryUrl|default:'#' }}">
+				<span class="pull-left">
+					{{ data.secundaryLabel }}
+				</span>
+				<span class="pull-right"><i class="fa {{ data.secundaryIcon|default:'fa-arrow-circle-right' }}"></i></span>
+				<div class="clearfix"></div>
+			</a>
+		</div>
+	</a>
+</div>

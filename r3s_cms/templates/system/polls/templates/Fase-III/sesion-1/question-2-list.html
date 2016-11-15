@@ -1,0 +1,18 @@
+{% for oppotunity in poll.opportunitiess %}
+<tr id = "{{ oppotunity.id }}">
+	<td class = "text-center">
+		{{ oppotunity.area|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ oppotunity.description|default:'' }}
+	</td>
+	<td class = "text-center">
+		{{ oppotunity.evidence|default:'' }}
+	</td>
+	<td class = "text-center">
+	{% if poll.isSaveEnabled %}
+		<button class="btn btn-primary btn-xs add-row" type="submit" data-id = "{{ oppotunity.id }}" id = "send-id" data-elements = "name,position,years,months" data-required = "name,position,years,months" data-url = "" {{ poll.canBeSaved|yesno:',disabled="disabled"' }} data-action = "REMOVE" data-source = "OPPORTUNITIES">Eliminar</button>
+	{% endif %}
+	</td>
+</tr>
+{% endfor %}

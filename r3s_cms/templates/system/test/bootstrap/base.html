@@ -1,0 +1,17 @@
+{% extends extend_template %}
+
+{% block PAGE_HEAD_TITLE %}
+	{{ block.super }}
+	System - Test - Bootstrap - {{ type }} - {{ size }}
+{% endblock %}
+
+{% block BODY_CONTENT %}
+	<div class="page-header">
+		<h1>
+			Bootstrap Test
+			<small>
+				{{ type }} - {{ size }}
+			</small>
+		</h1>
+	</div>
+{% endblock %}

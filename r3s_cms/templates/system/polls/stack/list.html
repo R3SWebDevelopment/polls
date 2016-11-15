@@ -1,0 +1,47 @@
+{% extends "system/dashboard/simple-sidebar/base.html" %}
+{% load system_tags %}
+
+{% block DASHBOARD_BODY %}
+	<div class = "row" id = "user-control">
+		<div class = "col-md-10 col-md-offset-1">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							Sección
+						</th>
+						<th>
+							Nombre
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for questionnaire in list %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>
+							{{ questionnaire.getSectionName }}
+						</td>
+						<td>
+							<a href = "{{ questionnaire.viewStaffURL }}">
+								{{ questionnaire.getName }}
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block PAGE_JS %}
+	{{ block.super }}
+	<script src="/static/js/apps/system/dashboard/base.js"></script>
+	<script src="/static/js/apps/system/users/base.js"></script>
+{% endblock %}
